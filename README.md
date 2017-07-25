@@ -1,3 +1,18 @@
+USAGE
+=====
+
+```
+cd zhparser
+docker build -t zhparser .
+docker run --rm -v="$PWD:/host" zhparser cp /zhparser.tar.gz /host
+docker run -it --rm -v="$PWD:/host" postgres:9.5.6 bash
+tar -P -xvzf /host/zhparser.tar.gz
+pg_createcluster 9.5 main
+pg_ctlcluster 9.5 main start
+su postgres -c psql
+create extension zhparser;
+```
+
 Zhparser
 ========
 
